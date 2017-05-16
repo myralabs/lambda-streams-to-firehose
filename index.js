@@ -83,7 +83,7 @@ var USE_DEFAULT_DELIVERY_STREAMS = true;
  * value: deliveryStreamName
  */
 var deliveryStreamMapping = {
-    'DEFAULT' : 'LambdaStreamsDefaultDeliveryStream'
+    'DEFAULT' : DEFAULT_DELIVERY_STREAM_NAME
 };
 
 var start;
@@ -149,7 +149,7 @@ function createDynamoDataItem(record) {
     output.SizeBytes = record.dynamodb.SizeBytes;
     output.ApproximateCreationDateTime = record.dynamodb.ApproximateCreationDateTime;
     output.eventName = record.eventName;
-    // adding userIdentity, used by DynamoDB TTL to indicate removal by TTL as opposed to user initiated remove 
+    // adding userIdentity, used by DynamoDB TTL to indicate removal by TTL as opposed to user initiated remove
     output.userIdentity = record.userIdentity;
 
     return output;
@@ -258,7 +258,7 @@ exports.handler = handler;
  * Function which resolves the destination delivery stream for a given Kinesis
  * stream. If no delivery stream is found to deliver to, then we will cache the
  * default delivery stream
- * 
+ *
  * @param streamName
  * @param shouldFailbackToDefaultDeliveryStream
  * @param event
