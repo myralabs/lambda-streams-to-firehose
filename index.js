@@ -54,6 +54,7 @@ var router = require('./router');
  * default router
  */
 var useRouter = router.defaultRouting.bind(undefined);
+var useRouter = router.routeByAccountId.bind(undefined, {});
 function setRouter(router) {
     useRouter = router
 }
